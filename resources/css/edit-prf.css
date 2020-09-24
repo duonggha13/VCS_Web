@@ -1,0 +1,16 @@
+.header-edit-prf {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-edit-profile {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.input-group {
+    margin-bottom: 5px;
+}
