@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th9 24, 2020 lúc 10:33 PM
+-- Thời gian đã tạo: Th9 28, 2020 lúc 11:05 AM
 -- Phiên bản máy phục vụ: 10.4.8-MariaDB
 -- Phiên bản PHP: 7.3.11
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `data`
+-- Cơ sở dữ liệu: `student_management`
 --
 
 -- --------------------------------------------------------
@@ -40,11 +40,11 @@ CREATE TABLE `document` (
 
 INSERT INTO `document` (`id`, `exercise`, `solution`) VALUES
 (1, 'Bài 1;resources/document/exercise/bai1.txt', ''),
-(10, 'Bài 2;resources/document/exercise/bai2.csv', ''),
-(11, 'Bài 3;resources/document/exercise/a.py', ''),
-(15, 'Bài 1;resources/document/exercise/bai1.txt', 'student1;resources/document/solution/sinhvien1.txt'),
-(16, 'Bài 1;resources/document/exercise/bai1.txt', 'Ha;resources/document/solution/sinhvien2.txt'),
-(17, 'Bài 2;resources/document/exercise/bai2.csv', 'student1;resources/document/solution/bai2.csv');
+(2, 'Bài 2;resources/document/exercise/bai2.txt', ''),
+(3, 'Bài 3;resources/document/exercise/bai3.txt', ''),
+(4, 'Bài 1;resources/document/exercise/bai1.txt', 'duongha;resources/document/solution/DuongHa_bai1.txt'),
+(5, 'Bài 2;resources/document/exercise/bai2.txt', 'duongha;resources/document/solution/DuongHa_bai2.doc'),
+(6, 'Bài 1;resources/document/exercise/bai1.txt', 'thuhuyen;resources/document/solution/Huyen_bai1.txt');
 
 -- --------------------------------------------------------
 
@@ -66,10 +66,10 @@ CREATE TABLE `info` (
 --
 
 INSERT INTO `info` (`username`, `password`, `name`, `email`, `phone_number`, `id`) VALUES
-('Giaovien', 'giaovien', 'Giao vien 1', 'giaovien@123', 12345678, 1),
-('Ha', 'hhh1207', 'Duong Ha', 'dh123@gmail.com', 12345678, 0),
-('Hhh', 'hh1207', 'Hihihehehahahoholalakaka', 'hh123@123', 12345, 0),
-('student1', 'qwe', 'abcde', 'hh12@xyz.123', 123456, 0);
+('duongha', 'duongha99', 'Dương Thu Hà', 'duongha99@gmail.com', 123456789, 0),
+('giaovien', 'giaovien', 'Giáo viên', 'giaovien@123', 123456789, 1),
+('phuonglinh', 'phuonglinh', 'Hoàng Phương Linh', 'phuonglinh123@gmail.com', 23456789, 0),
+('thuhuyen', 'thuhuyen', 'Dương Huyền', 'duonghuyen1@gmail.com', 234567890, 0);
 
 -- --------------------------------------------------------
 
@@ -80,9 +80,45 @@ INSERT INTO `info` (`username`, `password`, `name`, `email`, `phone_number`, `id
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
   `from_username` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `to_username` varchar(50) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `message` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `date_time_msg` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `messages`
+--
+
+INSERT INTO `messages` (`id`, `from_username`, `to_username`, `message`, `date_time_msg`) VALUES
+(1, 'giaovien', 'duongha', 'Hello', '2020-09-28 10:38:40'),
+(2, 'giaovien', 'duongha', 'Hi', '2020-09-28 10:38:48'),
+(3, 'giaovien', 'giaovien', 'hallo', '2020-09-28 10:38:54'),
+(4, 'giaovien', 'phuonglinh', 'hi', '2020-09-28 10:39:02'),
+(5, 'giaovien', 'thuhuyen', 'abc hello', '2020-09-28 10:39:09'),
+(6, 'duongha', 'giaovien', 'hii', '2020-09-28 10:43:11'),
+(7, 'duongha', 'phuonglinh', 'hello', '2020-09-28 10:43:20'),
+(8, 'duongha', 'thuhuyen', '123', '2020-09-28 10:43:24'),
+(9, 'phuonglinh', 'giaovien', 'hello', '2020-09-28 10:43:47'),
+(10, 'phuonglinh', 'duongha', 'hi', '2020-09-28 10:43:51');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `quiz`
+--
+
+CREATE TABLE `quiz` (
+  `id` int(11) NOT NULL,
+  `linkfiletxt` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `hint` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `quiz`
+--
+
+INSERT INTO `quiz` (`id`, `linkfiletxt`, `hint`) VALUES
+(1, 'resources/document/quiz/Sang thu.txt', 'Là 1 bài thơ trong chương trình ngữ văn 9, là những cảm xúc của tác giả với 1 mùa trong năm');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -107,6 +143,12 @@ ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `quiz`
+--
+ALTER TABLE `quiz`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -114,13 +156,19 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT cho bảng `document`
 --
 ALTER TABLE `document`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT cho bảng `quiz`
+--
+ALTER TABLE `quiz`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,8 +1,13 @@
 * {
     box-sizing: border-box;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 .wrapper {
+    margin: 0;
+}
+
+body {
     margin: 0;
 }
 
@@ -14,37 +19,63 @@
     width: 100%;
     padding: 20px 100px;
     z-index: 100;
+    background-color: #006a71;
+    font-size: 20px;
+}
+
+.username_header {
+    color: #f9f9f9;
 }
 
 .container {
-    margin: 50px 200px;
+    width: 100%;
+    margin: 0;
     align-items: center;
+    height: 100%;
+    background-color: #ffffdd;
+    height: 500px;
+}
+
+.footer {
+    background-color: #d9adad;
+    height: 20px;
 }
 
 h1 {
+    margin: 0;
+    padding: 20px;
     font-size: 24px;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #0278ae;
     min-width: 150px;
     box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
     padding: 15px 10px;
     z-index: 1;
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
+    color: cadetblue;
 }
 
+
 a {
+    color: #f9f9f9;
     text-decoration: none;
 }
 
 a:hover {
-    color: #C0C0C0;
+    color: cadetblue;
+}
+
+a:visited {
+    text-decoration: none;
+    decoration: none;
 }
 
 input,
